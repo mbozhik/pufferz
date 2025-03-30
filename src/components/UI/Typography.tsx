@@ -5,21 +5,26 @@ import type {HTMLAttributes} from 'react'
 import {cn} from '@/lib/utils'
 import {AnimatePresence, motion, Variants, HTMLMotionProps, useInView} from 'motion/react'
 
-type Props = HTMLAttributes<HTMLHeadingElement> & {
+type Props = {
   type: TypoTypes
   className?: string
   children: React.ReactNode
   animated?: boolean
   by?: 'word' | 'line'
   offset?: number
-}
+} & (HTMLAttributes<HTMLHeadingElement> | HTMLAttributes<HTMLParagraphElement> | HTMLAttributes<HTMLSpanElement>)
 
 export type TypoTypes = keyof typeof typoClasses
 
 export const typoClasses = {
   h1: 'text-8xl font-extrabold !leading-[1] tracking-[-0.03em]',
-  p: 'text-2xl tracking-[-0.025em] text-neutral-400',
+  p: 'text-2xl !leading-[1.1] tracking-[-0.025em] text-neutral-400',
+  span: 'text-lg !leading-[1.1] tracking-[-0.025em] text-neutral-400',
 } as const
+
+export const H1 = createTypography('h1')
+export const P = createTypography('p')
+export const SPAN = createTypography('span')
 
 const variants = {
   item: {
@@ -70,9 +75,15 @@ const {
   word: {item: wordVariants, container: wordContainerVariants},
 } = variantConfigs
 
+type ElementType = HTMLHeadingElement | HTMLParagraphElement | HTMLSpanElement
+
+type MotionElementType = {
+  [K in TypoTypes]: (typeof motion)[K]
+}[TypoTypes]
+
 function Typography({type, className, children, animated = true, by = 'line', offset = 250, ...props}: Props) {
   const Element = type
-  const ref = React.useRef(null)
+  const ref = React.useRef<ElementType>(null)
   const isInView = useInView(ref, {
     once: true,
     margin: `${-offset}px 0px`,
@@ -86,7 +97,7 @@ function Typography({type, className, children, animated = true, by = 'line', of
     )
   }
 
-  const MotionElement = motion[type] as typeof motion.h1
+  const MotionElement = motion[type] as MotionElementType
 
   if (by === 'word') {
     const processContent = (child: React.ReactNode): React.ReactNode[] => {
@@ -109,7 +120,7 @@ function Typography({type, className, children, animated = true, by = 'line', of
           animate={isInView ? 'visible' : 'hidden'}
           variants={wordContainerVariants} // Use word-specific container variants
           className={cn(typoClasses[type], className)}
-          {...(props as HTMLMotionProps<typeof type>)}
+          {...(props as any)}
         >
           {content.map((segment, index) => {
             if (React.isValidElement(segment)) {
@@ -130,7 +141,14 @@ function Typography({type, className, children, animated = true, by = 'line', of
 
   return (
     <AnimatePresence mode="wait">
-      <MotionElement ref={ref} initial="hidden" animate={isInView ? 'visible' : 'hidden'} variants={containerVariants} className={cn(typoClasses[type], className)} {...(props as HTMLMotionProps<typeof type>)}>
+      <MotionElement
+        ref={ref}
+        initial="hidden"
+        animate={isInView ? 'visible' : 'hidden'} // trigger when in view
+        variants={containerVariants}
+        className={cn(typoClasses[type], className)}
+        {...(props as any)}
+      >
         <span className="block overflow-hidden">
           <motion.span variants={defaultVariants} className="block">
             {children}
@@ -150,6 +168,3 @@ function createTypography(type: TypoTypes) {
   Component.displayName = `Typography(${type.toUpperCase()})`
   return Component
 }
-
-export const H1 = createTypography('h1')
-export const P = createTypography('p')
