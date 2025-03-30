@@ -149,6 +149,7 @@ interface MediaProps {
   textColor: string
   borderRadius?: number
   font?: string
+  gap?: number
 }
 
 class Media {
@@ -178,8 +179,9 @@ class Media {
   speed: number = 0
   isBefore: boolean = false
   isAfter: boolean = false
+  gap: number
 
-  constructor({geometry, gl, image, index, length, renderer, scene, screen, text, viewport, bend, textColor, borderRadius = 0, font}: MediaProps) {
+  constructor({geometry, gl, image, index, length, renderer, scene, screen, text, viewport, bend, textColor, borderRadius = 0, font, gap = 2}: MediaProps) {
     this.geometry = geometry
     this.gl = gl
     this.image = image
@@ -194,6 +196,7 @@ class Media {
     this.textColor = textColor
     this.borderRadius = borderRadius
     this.font = font
+    this.gap = gap
     this.createShader()
     this.createMesh()
     this.createTitle()
@@ -347,7 +350,7 @@ class Media {
     this.plane.scale.y = (this.viewport.height * (900 * this.scale)) / this.screen.height
     this.plane.scale.x = (this.viewport.width * (700 * this.scale)) / this.screen.width
     this.plane.program.uniforms.uPlaneSizes.value = [this.plane.scale.x, this.plane.scale.y]
-    this.padding = 2
+    this.padding = this.gap
     this.width = this.plane.scale.x + this.padding
     this.widthTotal = this.width * this.length
     this.x = this.width * this.index
@@ -360,6 +363,7 @@ interface AppConfig {
   textColor?: string
   borderRadius?: number
   font?: string
+  gap?: number
 }
 
 class App {
@@ -392,7 +396,7 @@ class App {
   isDown: boolean = false
   start: number = 0
 
-  constructor(container: HTMLElement, {items, bend = 1, textColor = '#ffffff', borderRadius = 0, font = 'bold 30px DM Sans'}: AppConfig) {
+  constructor(container: HTMLElement, {items, bend = 1, textColor = '#ffffff', borderRadius = 0, font = 'bold 30px DM Sans', gap = 2}: AppConfig) {
     document.documentElement.classList.remove('no-js')
     this.container = container
     this.scroll = {ease: 0.05, current: 0, target: 0, last: 0}
@@ -402,7 +406,7 @@ class App {
     this.createScene()
     this.onResize()
     this.createGeometry()
-    this.createMedias(items, bend, textColor, borderRadius, font)
+    this.createMedias(items, bend, textColor, borderRadius, font, gap)
     this.update()
     this.addEventListeners()
   }
@@ -431,7 +435,7 @@ class App {
     })
   }
 
-  createMedias(items: {image: string; text: string}[] | undefined, bend: number = 1, textColor: string, borderRadius: number, font: string) {
+  createMedias(items: {image: string; text: string}[] | undefined, bend: number = 1, textColor: string, borderRadius: number, font: string, gap: number) {
     const defaultItems = [
       {
         image: '/fall/1.jpg',
@@ -492,6 +496,7 @@ class App {
         textColor,
         borderRadius,
         font,
+        gap,
       })
     })
   }
@@ -596,9 +601,10 @@ interface CircularGalleryProps {
   textColor?: string
   borderRadius?: number
   font?: string
+  gap?: number
 }
 
-export default function CircularGallery({items, bend = 3, textColor = '#ffffff', borderRadius = 0.05, font = 'bold 30px Manrope'}: CircularGalleryProps) {
+export default function CircularGallery({items, bend = 3, textColor = '#ffffff', borderRadius = 0.05, font = 'bold 30px Manrope', gap = 2}: CircularGalleryProps) {
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -609,11 +615,12 @@ export default function CircularGallery({items, bend = 3, textColor = '#ffffff',
       textColor,
       borderRadius,
       font,
+      gap,
     })
     return () => {
       app.destroy()
     }
-  }, [items, bend, textColor, borderRadius, font])
+  }, [items, bend, textColor, borderRadius, font, gap])
 
   return <div className="w-full h-full overflow-hidden cursor-grab active:cursor-grabbing" ref={containerRef} />
 }
