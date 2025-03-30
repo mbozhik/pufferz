@@ -17,9 +17,9 @@ type Props = {
 export type TypoTypes = keyof typeof typoClasses
 
 export const typoClasses = {
-  h1: 'text-8xl font-extrabold !leading-[1] tracking-[-0.03em]',
-  p: 'text-2xl !leading-[1.1] tracking-[-0.025em] text-neutral-400',
-  span: 'text-lg !leading-[1.1] tracking-[-0.025em] text-neutral-400',
+  h1: 'text-8xl xl:text-7xl sm:text-[56px] font-extrabold !leading-[1] sm:!leading-[1.1] tracking-[-0.03em]',
+  p: 'text-2xl xl:text-xl !leading-[1.1] tracking-[-0.025em] text-neutral-400',
+  span: 'text-lg xl:text-base !leading-[1.1] tracking-[-0.025em] text-neutral-400',
 } as const
 
 export const H1 = createTypography('h1')

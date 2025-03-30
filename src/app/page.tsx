@@ -6,7 +6,9 @@ export default function IndexPage() {
     <>
       <Hero />
 
-      <Container>контент</Container>
+      <Container>
+        <div className="py-40 text-center">other content</div>
+      </Container>
     </>
   )
 }

@@ -1,6 +1,6 @@
 import {cn} from '@/lib/utils'
 
-export const WEBSITE_BOX = 'px-20 xl:px-14'
+export const WEBSITE_BOX = 'px-20 xl:px-14 sm:px-2'
 export const WEBSITE_OFFSET = 'pt-40 xl:pt-32'
 
 export default function Container({children, className}: {children: React.ReactNode; className?: string}) {
