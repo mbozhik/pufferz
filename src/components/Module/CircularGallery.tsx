@@ -434,52 +434,44 @@ class App {
   createMedias(items: {image: string; text: string}[] | undefined, bend: number = 1, textColor: string, borderRadius: number, font: string) {
     const defaultItems = [
       {
-        image: `https://picsum.photos/seed/1/800/600?grayscale`,
-        text: 'Bridge',
+        image: '/fall/1.jpg',
+        text: 'Puffer Knight #001',
       },
       {
-        image: `https://picsum.photos/seed/2/800/600?grayscale`,
-        text: 'Desk Setup',
+        image: '/fall/2.jpg',
+        text: 'Puffer Wizard #042',
       },
       {
-        image: `https://picsum.photos/seed/3/800/600?grayscale`,
-        text: 'Waterfall',
+        image: '/fall/3.jpg',
+        text: 'Puffer Samurai #103',
       },
       {
-        image: `https://picsum.photos/seed/4/800/600?grayscale`,
-        text: 'Strawberries',
+        image: '/fall/4.jpg',
+        text: 'Puffer Ninja #247',
       },
       {
-        image: `https://picsum.photos/seed/5/800/600?grayscale`,
-        text: 'Deep Diving',
+        image: '/fall/5.jpg',
+        text: 'Puffer Warrior #315',
       },
       {
-        image: `https://picsum.photos/seed/16/800/600?grayscale`,
-        text: 'Train Track',
+        image: '/fall/6.jpg',
+        text: 'Puffer Monk #428',
       },
       {
-        image: `https://picsum.photos/seed/17/800/600?grayscale`,
-        text: 'Santorini',
+        image: '/fall/7.jpg',
+        text: 'Puffer Dragon #569',
       },
       {
-        image: `https://picsum.photos/seed/8/800/600?grayscale`,
-        text: 'Blurry Lights',
+        image: '/fall/8.jpg',
+        text: 'Puffer Guardian #671',
       },
       {
-        image: `https://picsum.photos/seed/9/800/600?grayscale`,
-        text: 'New York',
+        image: '/fall/9.jpg',
+        text: 'Puffer Legend #789',
       },
       {
-        image: `https://picsum.photos/seed/10/800/600?grayscale`,
-        text: 'Good Boy',
-      },
-      {
-        image: `https://picsum.photos/seed/21/800/600?grayscale`,
-        text: 'Coastline',
-      },
-      {
-        image: `https://picsum.photos/seed/12/800/600?grayscale`,
-        text: 'Palm Trees',
+        image: '/fall/10.jpg',
+        text: 'Puffer Master #842',
       },
     ]
     const galleryItems = items && items.length ? items : defaultItems
@@ -606,7 +598,7 @@ interface CircularGalleryProps {
   font?: string
 }
 
-export default function CircularGallery({items, bend = 3, textColor = '#ffffff', borderRadius = 0.05, font = 'bold 30px DM Sans'}: CircularGalleryProps) {
+export default function CircularGallery({items, bend = 3, textColor = '#ffffff', borderRadius = 0.05, font = 'bold 30px Manrope'}: CircularGalleryProps) {
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {

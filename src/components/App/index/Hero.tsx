@@ -1,6 +1,7 @@
 import {cn} from '@/lib/utils'
 
 import {H1, P} from '~/UI/Typography'
+import HeroGallery from './HeroGallery'
 
 export default function Hero() {
   const SCREEN_HEIGHT = 'h-screen !h-svh'
@@ -15,6 +16,8 @@ export default function Hero() {
 
           <P by="word">Exclusive NFT collection on SUI. Dive in, discover, collect.</P>
         </div>
+
+        <HeroGallery />
       </div>
     </section>
   )
