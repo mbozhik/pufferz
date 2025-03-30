@@ -3,6 +3,7 @@ import {cn} from '@/lib/utils'
 
 import Link from 'next/link'
 import {P, SPAN} from '~/UI/Typography'
+import Button from '~/UI/Button'
 
 const HEADER_LINKS = ['about', 'roadmap', 'collection', 'faq']
 
@@ -17,14 +18,14 @@ export default function Header() {
         <nav className="flex items-center justify-center gap-6 sm:hidden">
           {HEADER_LINKS.map((link) => (
             <Link key={link} href={`/#${link}`}>
-              <SPAN offset={0} className="capitalize duration-300 hover:text-white">
+              <SPAN offset={0} className="font-medium capitalize duration-300 text-gray hover:text-foreground">
                 {link}
               </SPAN>
             </Link>
           ))}
         </nav>
 
-        <button className={cn('justify-self-end', 'px-4 py-1.5 bg-foreground text-background rounded-lg', 'hover:bg-gray duration-300')}>Mint now</button>
+        <Button to="https://sui.io/" target="_blank" className="justify-self-end" text="Connect wallet" />
       </div>
     </header>
   )
