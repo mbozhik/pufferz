@@ -3,6 +3,8 @@ import {manrope} from '@/lib/layout-config'
 
 import './globals.css'
 
+import {Analytics as PostHog} from '~/Global/Analytics'
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -10,7 +12,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${manrope.className} antialiased`}>{children}</body>
+      <body className={`${manrope.className} antialiased`}>
+        {children}
+
+        {process.env.NODE_ENV === 'production' && <PostHog />}
+      </body>
     </html>
   )
 }
