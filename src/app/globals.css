@@ -1,18 +1,2 @@
 @import 'tailwindcss';
-
-@theme inline {
-  --color-background: #171717;
-  --color-foreground: #ffffff;
-
-  --color-section: #282828;
-  --color-gray: #7f7f7f;
-}
-
-@custom-variant xl (@media (max-width: 1780px));
-@custom-variant sm (@media (max-width: 350px));
-
-body {
-  @apply bg-background text-foreground;
-
-  font-family: Manrope, sans-serif;
-}
+@config '../../tailwind.config.ts';
