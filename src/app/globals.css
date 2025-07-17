@@ -1,2 +1,7 @@
 @import 'tailwindcss';
 @config '../../tailwind.config.ts';
+
+body {
+  @apply duration-100 text-foreground;
+  background-color: var(--body-color, #0b1e3f);
+}
