@@ -4,7 +4,7 @@ import {manrope} from '@/lib/layout-config'
 import './globals.css'
 
 import Header from '~/Global/Header'
-import {Analytics as PostHog} from '~/Global/Analytics'
+import {Analytics as YandexMetrika} from '~/Global/Analytics'
 
 export default function RootLayout({
   children,
@@ -17,7 +17,7 @@ export default function RootLayout({
         <Header />
         {children}
 
-        {process.env.NODE_ENV === 'production' && <PostHog />}
+        {process.env.NODE_ENV === 'production' && <YandexMetrika />}
       </body>
     </html>
   )
