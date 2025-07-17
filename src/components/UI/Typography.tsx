@@ -1,9 +1,11 @@
 'use client'
 
-import React from 'react'
 import type {HTMLAttributes} from 'react'
+
 import {cn} from '@/lib/utils'
-import {AnimatePresence, motion, Variants, HTMLMotionProps, useInView} from 'motion/react'
+
+import React from 'react'
+import {AnimatePresence, motion, useInView} from 'motion/react'
 
 type Props = {
   type: TypoTypes
@@ -17,9 +19,9 @@ type Props = {
 export type TypoTypes = keyof typeof typoClasses
 
 export const typoClasses = {
-  h1: 'text-8xl xl:text-7xl sm:text-[56px] font-extrabold !leading-[1] sm:!leading-[1.1] tracking-[-0.03em]',
-  p: 'text-2xl xl:text-xl !leading-[1.1] tracking-[-0.025em] text-neutral-400',
-  span: 'text-lg xl:text-base !leading-[1.1] tracking-[-0.025em] text-neutral-400',
+  h1: cn('text-8xl xl:text-7xl sm:text-[56px] font-extrabold', '!leading-[1] sm:!leading-[1.1] tracking-[-0.03em]', 'text-foreground-blue'),
+  p: cn('text-2xl xl:text-xl', '!leading-[1.3] tracking-[-0.025em]', 'text-neutral-400'),
+  span: cn('text-lg xl:text-base', '!leading-[1.1] tracking-[-0.025em]', 'text-neutral-400'),
 } as const
 
 export const H1 = createTypography('h1')
@@ -81,7 +83,7 @@ type MotionElementType = {
   [K in TypoTypes]: (typeof motion)[K]
 }[TypoTypes]
 
-function Typography({type, className, children, animated = true, by = 'line', offset = 250, ...props}: Props) {
+function Typography({type, className, children, animated = true, by = 'line', offset = 100, ...props}: Props) {
   const Element = type
   const ref = React.useRef<ElementType>(null)
   const isInView = useInView(ref, {
