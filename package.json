@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-accordion": "^1.2.11",
     "@types/lodash": "^4.17.16",
     "@types/matter-js": "^0.19.8",
     "clsx": "^2.1.1",
