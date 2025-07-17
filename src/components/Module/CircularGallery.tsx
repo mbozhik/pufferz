@@ -5,6 +5,49 @@ import {cn} from '@/lib/utils'
 import {useRef, useEffect} from 'react'
 import {Renderer, Camera, Transform, Plane, Mesh, Program, Texture} from 'ogl'
 
+export const ITEMS = [
+  {
+    image: '/fall/1.jpg',
+    text: '',
+  },
+  {
+    image: '/fall/2.jpg',
+    text: '',
+  },
+  {
+    image: '/fall/3.jpg',
+    text: '',
+  },
+  {
+    image: '/fall/4.jpg',
+    text: '',
+  },
+  {
+    image: '/fall/5.jpg',
+    text: '',
+  },
+  {
+    image: '/fall/6.jpg',
+    text: '',
+  },
+  {
+    image: '/fall/7.jpg',
+    text: '',
+  },
+  {
+    image: '/fall/8.jpg',
+    text: '',
+  },
+  {
+    image: '/fall/9.jpg',
+    text: '',
+  },
+  {
+    image: '/fall/10.jpg',
+    text: '',
+  },
+]
+
 type GL = Renderer['gl']
 
 function debounce<T extends (...args: any[]) => void>(func: T, wait: number) {
@@ -439,49 +482,7 @@ class App {
   }
 
   createMedias(items: {image: string; text: string}[] | undefined, bend: number = 1, textColor: string, borderRadius: number, font: string, gap: number) {
-    const defaultItems = [
-      {
-        image: '/fall/1.jpg',
-        text: '',
-      },
-      {
-        image: '/fall/2.jpg',
-        text: '',
-      },
-      {
-        image: '/fall/3.jpg',
-        text: '',
-      },
-      {
-        image: '/fall/4.jpg',
-        text: '',
-      },
-      {
-        image: '/fall/5.jpg',
-        text: '',
-      },
-      {
-        image: '/fall/6.jpg',
-        text: '',
-      },
-      {
-        image: '/fall/7.jpg',
-        text: '',
-      },
-      {
-        image: '/fall/8.jpg',
-        text: '',
-      },
-      {
-        image: '/fall/9.jpg',
-        text: '',
-      },
-      {
-        image: '/fall/10.jpg',
-        text: '',
-      },
-    ]
-    const galleryItems = items && items.length ? items : defaultItems
+    const galleryItems = items && items.length ? items : ITEMS
     this.mediasImages = galleryItems.concat(galleryItems)
     this.medias = this.mediasImages.map((data, index) => {
       return new Media({
