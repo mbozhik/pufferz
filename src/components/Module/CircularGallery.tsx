@@ -1,5 +1,7 @@
 'use client'
 
+import {cn} from '@/lib/utils'
+
 import {useRef, useEffect} from 'react'
 import {Renderer, Camera, Transform, Plane, Mesh, Program, Texture} from 'ogl'
 
@@ -143,7 +145,7 @@ interface MediaProps {
   renderer: Renderer
   scene: Transform
   screen: ScreenSize
-  text: string
+  text?: string
   viewport: Viewport
   bend: number
   textColor: string
@@ -181,7 +183,7 @@ class Media {
   isAfter: boolean = false
   gap: number
 
-  constructor({geometry, gl, image, index, length, renderer, scene, screen, text, viewport, bend, textColor, borderRadius = 0, font, gap = 2}: MediaProps) {
+  constructor({geometry, gl, image, index, length, renderer, scene, screen, text = '', viewport, bend, textColor, borderRadius = 0, font, gap = 2}: MediaProps) {
     this.geometry = geometry
     this.gl = gl
     this.image = image
@@ -286,14 +288,15 @@ class Media {
   }
 
   createTitle() {
-    this.title = new Title({
-      gl: this.gl,
-      plane: this.plane,
-      renderer: this.renderer,
-      text: this.text,
-      textColor: this.textColor,
-      font: this.font,
-    })
+    // Commented out to hide text
+    // this.title = new Title({
+    //   gl: this.gl,
+    //   plane: this.plane,
+    //   renderer: this.renderer,
+    //   text: this.text,
+    //   textColor: this.textColor,
+    //   font: this.font,
+    // })
   }
 
   update(scroll: {current: number; last: number}, direction: 'right' | 'left') {
@@ -439,43 +442,43 @@ class App {
     const defaultItems = [
       {
         image: '/fall/1.jpg',
-        text: 'Puffer Knight #001',
+        text: '',
       },
       {
         image: '/fall/2.jpg',
-        text: 'Puffer Wizard #042',
+        text: '',
       },
       {
         image: '/fall/3.jpg',
-        text: 'Puffer Samurai #103',
+        text: '',
       },
       {
         image: '/fall/4.jpg',
-        text: 'Puffer Ninja #247',
+        text: '',
       },
       {
         image: '/fall/5.jpg',
-        text: 'Puffer Warrior #315',
+        text: '',
       },
       {
         image: '/fall/6.jpg',
-        text: 'Puffer Monk #428',
+        text: '',
       },
       {
         image: '/fall/7.jpg',
-        text: 'Puffer Dragon #569',
+        text: '',
       },
       {
         image: '/fall/8.jpg',
-        text: 'Puffer Guardian #671',
+        text: '',
       },
       {
         image: '/fall/9.jpg',
-        text: 'Puffer Legend #789',
+        text: '',
       },
       {
         image: '/fall/10.jpg',
-        text: 'Puffer Master #842',
+        text: '',
       },
     ]
     const galleryItems = items && items.length ? items : defaultItems
@@ -612,9 +615,9 @@ export default function CircularGallery({items, bend = 3, textColor = '#ffffff',
     const app = new App(containerRef.current, {
       items,
       bend,
-      textColor,
+      // textColor: textColor + 'AD',
       borderRadius,
-      font,
+      // font,
       gap,
     })
     return () => {
@@ -622,5 +625,5 @@ export default function CircularGallery({items, bend = 3, textColor = '#ffffff',
     }
   }, [items, bend, textColor, borderRadius, font, gap])
 
-  return <div className="w-full h-full overflow-hidden cursor-grab active:cursor-grabbing" ref={containerRef} />
+  return <div className={cn('w-full h-full', 'overflow-hidden cursor-grab active:cursor-grabbing')} ref={containerRef} />
 }
