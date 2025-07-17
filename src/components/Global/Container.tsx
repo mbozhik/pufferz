@@ -4,5 +4,5 @@ export const WEBSITE_BOX = 'px-40 xl:px-32 sm:px-1.5'
 export const WEBSITE_OFFSET = 'pt-40 xl:pt-32'
 
 export default function Container({children, className}: {children: React.ReactNode; className?: string}) {
-  return <main className={cn(WEBSITE_BOX, 'py-[35vh] xl:py-[30vh] sm:py-[25vh]', className)}>{children}</main>
+  return <main className={cn(WEBSITE_BOX, 'py-[35vh] xl:py-[35vh] sm:py-[25vh]', className)}>{children}</main>
 }
