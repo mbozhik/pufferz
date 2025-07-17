@@ -1,5 +1,6 @@
 import Container from '~/Global/Container'
 import Hero from '~~/index/Hero'
+import Collection from '~~/index/Collection'
 
 export default function IndexPage() {
   return (
@@ -7,7 +8,7 @@ export default function IndexPage() {
       <Hero />
 
       <Container>
-        <div className="py-40 text-center">other content</div>
+        <Collection />
       </Container>
     </>
   )

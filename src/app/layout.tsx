@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body className={`${manrope.variable} relative text-foreground font-sans antialiased`}>
         <Header />
         {children}
