@@ -1,7 +1,7 @@
 'use client'
 
 import {cn} from '@/lib/utils'
-import {useMediaQuery} from '@/utils/use-media-query'
+import {useMediaQuery} from '@/hooks/useMediaQuery'
 
 import CircularGallery from '~/Module/CircularGallery'
 
