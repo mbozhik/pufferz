@@ -8,7 +8,7 @@ type Props = {
   target?: '_blank' | '_self'
 }
 
-export const BUTTON_STYLES = cn('w-fit px-4 sm:px-3 py-1.5 cursor-pointer', 'text-base font-medium', 'bg-foreground text-background rounded-lg', 'hover:bg-gray duration-300')
+export const BUTTON_STYLES = cn('w-fit px-4 sm:px-3 py-1.5 cursor-pointer', 'text-base font-medium', 'bg-primary text-background rounded-lg', 'hover:bg-primary/85 duration-300')
 
 export default function Button({text, className, to, target = '_self'}: Props) {
   if (to) {

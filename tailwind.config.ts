@@ -11,11 +11,17 @@ export default {
       sans: ['var(--font-manrope)', ...defaultTheme.fontFamily.sans],
     },
     colors: {
-      background: '#171717',
-      foreground: '#ffffff',
+      background: '#0B1E3F',
 
-      section: '#282828',
-      gray: '#7f7f7f',
+      foreground: {
+        DEFAULT: '#FFFFFF',
+        blue: '#cadeff',
+        light: '#A0B9DE',
+      },
+
+      primary: '#78C1FF',
+      secondary: '#4880C7',
+      border: '#1B3B6F',
 
       transparent: 'transparent',
     },

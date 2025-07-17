@@ -10,11 +10,11 @@ export default function Hero() {
   return (
     <section data-section="hero-index" className={cn('flex flex-col overflow-hidden', SCREEN_HEIGHT, WEBSITE_OFFSET)}>
       <div className={cn('relative z-20 text-center', 'flex flex-col items-center gap-3.5 xl:gap-4')}>
-        <H1 offset={0}>
+        <H1 className="text-foreground-blue" offset={0}>
           Pu<span className="tracking-[0em]">f</span>ferz Are Drifting <br className="sm:hidden" /> Into Your Wallet
         </H1>
 
-        <P className="sm:text-gray" by="word">
+        <P className="text-foreground" by="word">
           Exclusive NFT collection on SUI. <br className="hidden sm:inline-block" /> Dive in, discover, collect.
         </P>
       </div>

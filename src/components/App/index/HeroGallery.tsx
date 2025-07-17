@@ -10,7 +10,7 @@ export default function HeroGallery({className}: {className?: string}) {
 
   return (
     <div data-section="hero-gallery" className={cn('relative h-[700px] sm:scale-[1.05]', className)}>
-      <CircularGallery bend={isDesktop ? 3 : 1} gap={isDesktop ? 2 : 2.5} textColor="#7f7f7f" borderRadius={0.05} />
+      <CircularGallery bend={isDesktop ? 3 : 1} gap={isDesktop ? 2 : 2.5} borderRadius={0.05} />
     </div>
   )
 }
