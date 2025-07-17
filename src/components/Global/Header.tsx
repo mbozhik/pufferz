@@ -9,7 +9,7 @@ import Link from 'next/link'
 import {P, SPAN} from '~/UI/Typography'
 import Button from '~/UI/Button'
 
-const HEADER_LINKS = ['about', 'roadmap', 'collection', 'faq']
+const HEADER_LINKS = ['collection', 'manifesto', 'mint', 'faq', 'contact']
 
 export default function Header() {
   useScrollColor({
@@ -31,7 +31,7 @@ export default function Header() {
           Pufferz
         </P>
 
-        <nav className="flex items-center justify-center gap-6 sm:hidden">
+        <nav className="flex items-center justify-center gap-6.5 sm:hidden">
           {HEADER_LINKS.map((link) => (
             <Link key={link} href={`/#${link}`}>
               <SPAN offset={0} className="font-medium capitalize duration-300 text-foreground-blue hover:text-foreground">
