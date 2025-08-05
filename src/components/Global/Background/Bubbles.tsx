@@ -1,14 +1,12 @@
 'use client'
 
-import {cn} from '@/lib/utils'
-import {useScrollColor, BACKGROUND} from '@/hooks/useScrollColor'
 import {useMediaQuery} from '@/hooks/useMediaQuery'
 
 import {useEffect, useState} from 'react'
 import {motion, AnimatePresence} from 'motion/react'
 
 const BUBBLES = {
-  count: 20,
+  count: 30,
   minSize: 25,
   maxSize: 80,
   minDuration: 4,
@@ -29,17 +27,10 @@ type Bubble = {
   opacity: number
 }
 
-export default function Background() {
+export default function Bubbles() {
   const [bubbles, setBubbles] = useState<Bubble[]>([])
   const [lastUpdateTime, setLastUpdateTime] = useState(0)
   const isDesktop = useMediaQuery('(min-width: 768px)')
-
-  // body -> background color
-  useScrollColor({
-    startColor: BACKGROUND.start,
-    endColor: BACKGROUND.end,
-    variableName: '--body-color',
-  })
 
   useEffect(() => {
     const now = Date.now()
@@ -76,7 +67,7 @@ export default function Background() {
   }, [bubbles.length, lastUpdateTime, isDesktop])
 
   return (
-    <div className={cn('fixed inset-0 z-[999]', 'overflow-hidden pointer-events-none')}>
+    <div data-background="bubbles" className="absolute inset-0">
       <AnimatePresence>
         {bubbles.map((bubble) => (
           <motion.div
