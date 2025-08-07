@@ -2,8 +2,8 @@
 
 import FishLeftImage from '$/wildlife/fish-left.png'
 import FishRightImage from '$/wildlife/fish-right.png'
-import Weed1Image from '$/wildlife/weed-1.png'
-import Weed2Image from '$/wildlife/weed-2.png'
+// import Weed1Image from '$/wildlife/weed-1.png'
+// import Weed2Image from '$/wildlife/weed-2.png'
 
 import {useMediaQuery} from '@/hooks/useMediaQuery'
 
@@ -28,24 +28,24 @@ const WILDLIFE_CONFIG = {
     waveFrequency: 0.02,
     swayAmplitude: 10,
   },
-  seaweed: {
-    left: {
-      minCount: 1,
-      maxCount: 2,
-      image: Weed1Image,
-      rotations: [-4, 2],
-      spacing: 120,
-    },
-    right: {
-      minCount: 1,
-      maxCount: 2,
-      image: Weed2Image,
-      rotations: [4, -2],
-      spacing: 120,
-    },
-    size: 150,
-    laptopSizeMultiplier: 200,
-  },
+  // seaweed: {
+  //   left: {
+  //     minCount: 1,
+  //     maxCount: 2,
+  //     image: Weed1Image,
+  //     rotations: [-4, 2],
+  //     spacing: 150,
+  //   },
+  //   right: {
+  //     minCount: 1,
+  //     maxCount: 2,
+  //     image: Weed2Image,
+  //     rotations: [4, -2],
+  //     spacing: 150,
+  //   },
+  //   size: 150,
+  //   laptopSizeMultiplier: 200,
+  // },
 }
 
 type Fish = {
@@ -64,13 +64,12 @@ type Fish = {
 
 export default function Wildlife() {
   const [fish, setFish] = useState<Fish[]>([])
-  const [leftSeaweedCount, setLeftSeaweedCount] = useState(0)
-  const [rightSeaweedCount, setRightSeaweedCount] = useState(0)
+  // const [leftSeaweedCount, setLeftSeaweedCount] = useState(0)
+  // const [rightSeaweedCount, setRightSeaweedCount] = useState(0)
 
   const isDesktop = useMediaQuery('(min-width: 768px)')
-  const isLaptop = useMediaQuery('(min-width: 1536px)')
+  // const isLaptop = useMediaQuery('(min-width: 1536px)')
 
-  // Initialize Fish and Seaweed counts
   useEffect(() => {
     const newFish: Fish[] = []
 
@@ -96,8 +95,8 @@ export default function Wildlife() {
 
     setFish(newFish)
 
-    setLeftSeaweedCount(Math.floor(Math.random() * (WILDLIFE_CONFIG.seaweed.left.maxCount - WILDLIFE_CONFIG.seaweed.left.minCount + 1)) + WILDLIFE_CONFIG.seaweed.left.minCount)
-    setRightSeaweedCount(Math.floor(Math.random() * (WILDLIFE_CONFIG.seaweed.right.maxCount - WILDLIFE_CONFIG.seaweed.right.minCount + 1)) + WILDLIFE_CONFIG.seaweed.right.minCount)
+    // setLeftSeaweedCount(Math.floor(Math.random() * (WILDLIFE_CONFIG.seaweed.left.maxCount - WILDLIFE_CONFIG.seaweed.left.minCount + 1)) + WILDLIFE_CONFIG.seaweed.left.minCount)
+    // setRightSeaweedCount(Math.floor(Math.random() * (WILDLIFE_CONFIG.seaweed.right.maxCount - WILDLIFE_CONFIG.seaweed.right.minCount + 1)) + WILDLIFE_CONFIG.seaweed.right.minCount)
   }, [isDesktop])
 
   return (
@@ -174,9 +173,8 @@ export default function Wildlife() {
       </div>
 
       {/* Seaweed */}
-      {isDesktop && (
+      {/* {isDesktop && (
         <div data-background="seaweed" className="absolute inset-0 z-[-999] sm:hidden">
-          {/* Left Seaweed */}
           {Array.from({length: leftSeaweedCount}).map((_, index) => {
             const baseSize = WILDLIFE_CONFIG.seaweed.size
             const responsiveSize = isDesktop
@@ -210,7 +208,6 @@ export default function Wildlife() {
             )
           })}
 
-          {/* Right Seaweed */}
           {Array.from({length: rightSeaweedCount}).map((_, index) => {
             const baseSize = WILDLIFE_CONFIG.seaweed.size
             const responsiveSize = isDesktop
@@ -244,7 +241,7 @@ export default function Wildlife() {
             )
           })}
         </div>
-      )}
+      )} */}
     </div>
   )
 }
