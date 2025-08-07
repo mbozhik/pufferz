@@ -2,6 +2,8 @@
 
 import FishLeftImage from '$/wildlife/fish-left.png'
 import FishRightImage from '$/wildlife/fish-right.png'
+import Weed1Image from '$/wildlife/weed-1.png'
+import Weed2Image from '$/wildlife/weed-2.png'
 
 import {useMediaQuery} from '@/hooks/useMediaQuery'
 
@@ -26,6 +28,26 @@ const WILDLIFE_CONFIG = {
     waveFrequency: 0.02,
     swayAmplitude: 8,
   },
+  seaweed: {
+    left: {
+      minCount: 2,
+      maxCount: 3,
+      image: Weed1Image,
+      rotations: [-10, 5, -7, 3],
+      spacing: 100,
+    },
+    right: {
+      minCount: 1,
+      maxCount: 2,
+      image: Weed2Image,
+      rotations: [8, -6, 8, -4],
+      spacing: 120,
+    },
+    size: 150,
+    mobileSizeMultiplier: 0.9,
+    hoverSlideDistance: 100,
+    hoverTransitionDuration: 0.3,
+  },
 }
 
 type Fish = {
@@ -44,6 +66,7 @@ type Fish = {
 
 export default function Wildlife() {
   const [fish, setFish] = useState<Fish[]>([])
+  const [isHovered, setIsHovered] = useState(false)
   const isDesktop = useMediaQuery('(min-width: 768px)')
 
   // Initialize fish
@@ -144,6 +167,85 @@ export default function Wildlife() {
           </motion.div>
         ))}
       </AnimatePresence>
+
+      {/* Static Seaweed */}
+      <div className="absolute inset-0 pointer-events-none" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+        {/* Left seaweed */}
+        {Array.from({length: Math.floor(Math.random() * (WILDLIFE_CONFIG.seaweed.left.maxCount - WILDLIFE_CONFIG.seaweed.left.minCount + 1)) + WILDLIFE_CONFIG.seaweed.left.minCount}).map((_, index) => {
+          const baseSize = WILDLIFE_CONFIG.seaweed.size
+          const responsiveSize = isDesktop ? baseSize : baseSize * WILDLIFE_CONFIG.seaweed.mobileSizeMultiplier
+          const rotation = WILDLIFE_CONFIG.seaweed.left.rotations[index % WILDLIFE_CONFIG.seaweed.left.rotations.length]
+
+          return (
+            <motion.div
+              key={`left-weed-${index}`}
+              className="absolute pointer-events-none"
+              style={{
+                height: `${responsiveSize}px`,
+                width: `${responsiveSize}px`,
+                bottom: 0,
+                left: index * WILDLIFE_CONFIG.seaweed.left.spacing,
+                transform: `rotate(${rotation}deg)`,
+              }}
+              animate={{
+                y: isHovered ? WILDLIFE_CONFIG.seaweed.hoverSlideDistance : 0,
+                opacity: isHovered ? 0 : 1,
+              }}
+              transition={{
+                duration: WILDLIFE_CONFIG.seaweed.hoverTransitionDuration,
+                ease: 'easeInOut',
+              }}
+            >
+              <Image
+                src={WILDLIFE_CONFIG.seaweed.left.image}
+                alt="Seaweed"
+                className="w-full h-full object-contain"
+                style={{
+                  filter: 'drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3))',
+                }}
+              />
+            </motion.div>
+          )
+        })}
+
+        {/* Right seaweed */}
+        {Array.from({length: Math.floor(Math.random() * (WILDLIFE_CONFIG.seaweed.right.maxCount - WILDLIFE_CONFIG.seaweed.right.minCount + 1)) + WILDLIFE_CONFIG.seaweed.right.minCount}).map((_, index) => {
+          const baseSize = WILDLIFE_CONFIG.seaweed.size
+          const responsiveSize = isDesktop ? baseSize : baseSize * WILDLIFE_CONFIG.seaweed.mobileSizeMultiplier
+          const rotation = WILDLIFE_CONFIG.seaweed.right.rotations[index % WILDLIFE_CONFIG.seaweed.right.rotations.length]
+
+          return (
+            <motion.div
+              key={`right-weed-${index}`}
+              className="absolute pointer-events-none"
+              style={{
+                height: `${responsiveSize}px`,
+                width: `${responsiveSize}px`,
+                bottom: 0,
+                right: index * WILDLIFE_CONFIG.seaweed.right.spacing,
+                transform: `rotate(${rotation}deg)`,
+              }}
+              animate={{
+                y: isHovered ? WILDLIFE_CONFIG.seaweed.hoverSlideDistance : 0,
+                opacity: isHovered ? 0 : 1,
+              }}
+              transition={{
+                duration: WILDLIFE_CONFIG.seaweed.hoverTransitionDuration,
+                ease: 'easeInOut',
+              }}
+            >
+              <Image
+                src={WILDLIFE_CONFIG.seaweed.right.image}
+                alt="Seaweed"
+                className="w-full h-full object-contain"
+                style={{
+                  filter: 'drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3))',
+                }}
+              />
+            </motion.div>
+          )
+        })}
+      </div>
     </div>
   )
 }
