@@ -15,7 +15,7 @@ export default function Background() {
   })
 
   return (
-    <section data-section="background" className={cn('fixed inset-0 z-[999]', 'overflow-hidden pointer-events-none')}>
+    <section data-section="background" className={cn('fixed inset-0', 'w-screen h-screen', 'overflow-hidden pointer-events-none')}>
       <Bubbles />
       <Wildlife />
     </section>

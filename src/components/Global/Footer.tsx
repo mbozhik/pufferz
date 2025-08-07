@@ -22,7 +22,7 @@ const SOCIALS = {
 
 export default function Footer() {
   return (
-    <footer className={cn('flex items-center justify-between', 'pb-6 xl:pb-4', 'sm:!px-4', WEBSITE_BOX)}>
+    <footer className={cn('w-[45vw] xl:w-[55vw] sm:w-auto mx-auto sm:mx-4', 'relative z-20', 'pb-6 xl:pb-4', 'flex items-center justify-between')}>
       <SPAN className="!leading-[1.3] text-foreground-blue/50" offset={0}>
         © 2025 Pufferz <span className="sm:hidden">– All Rights Reserved.</span>
       </SPAN>

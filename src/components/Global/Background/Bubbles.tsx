@@ -67,7 +67,7 @@ export default function Bubbles() {
   }, [bubbles.length, lastUpdateTime, isDesktop])
 
   return (
-    <div data-background="bubbles" className="absolute inset-0">
+    <div data-background="bubbles" className="absolute inset-0 z-[999]">
       <AnimatePresence>
         {bubbles.map((bubble) => (
           <motion.div
