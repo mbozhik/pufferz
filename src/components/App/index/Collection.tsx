@@ -2,6 +2,7 @@
 
 import {RefreshCcw} from 'lucide-react'
 
+import {BOX} from '~/Global/Container'
 import {ITEMS} from '~/Module/CircularGallery'
 
 import {cn} from '@/lib/utils'
@@ -110,7 +111,7 @@ function FloatingCards() {
 
 export default function Collection() {
   return (
-    <section id="collection" data-section="collection-index" className={cn('flex flex-col items-center', 'gap-10')}>
+    <section id="collection" data-section="collection-index" className={cn('flex flex-col items-center gap-10', BOX.content)}>
       <div className={cn('flex flex-col items-center', 'gap-3.5 xl:gap-4 sm:gap-5', 'text-center')}>
         <H2 offset={0}>Pufferz Collection</H2>
 

@@ -1,6 +1,6 @@
 'use client'
 
-import {WEBSITE_BOX} from '~/Global/Container'
+import {BOX} from '~/Global/Container'
 
 import {cn} from '@/lib/utils'
 import {useScrollColor, BACKGROUND} from '@/hooks/useScrollColor'
@@ -20,7 +20,7 @@ export default function Header() {
   })
 
   return (
-    <header className={cn('fixed z-[99] inset-0 w-full h-fit pt-5 sm:pt-2', WEBSITE_BOX)}>
+    <header className={cn('fixed z-[99] inset-0 w-full h-fit pt-5 sm:pt-2', BOX.container)}>
       <div
         style={{
           backgroundColor: 'var(--header-color)',
