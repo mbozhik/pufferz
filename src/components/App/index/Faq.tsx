@@ -3,6 +3,8 @@
 import * as AccordionPrimitive from '@radix-ui/react-accordion'
 import {PlusIcon} from 'lucide-react'
 
+import {BOX} from '~/Global/Container'
+
 import {cn} from '@/lib/utils'
 
 import {motion} from 'motion/react'
@@ -50,12 +52,12 @@ const fadeInAnimationVariants = {
 
 export default function Faq() {
   return (
-    <section id="faq" data-section="faq-index" className={cn('flex flex-col items-center', 'gap-6')}>
+    <section id="faq" data-section="faq-index" className={cn('flex flex-col items-center gap-6', BOX.content)}>
       <H2 className="text-center" offset={0}>
         Your Pufferz Guide
       </H2>
 
-      <div className={cn('relative', 'w-[45vw] xl:w-[55vw] sm:w-auto')}>
+      <div className="relative w-full">
         <Accordion type="single" collapsible className="p-2 w-full bg-background/30 backdrop-blur-sm rounded-xl border border-foreground-blue/30" defaultValue="1">
           {Object.values(PROBLEMS).map((problem, idx) => (
             <motion.div custom={idx} variants={fadeInAnimationVariants} initial="initial" whileInView="animate" viewport={{once: true}} key={idx}>
