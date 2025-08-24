@@ -1,4 +1,4 @@
-import {WEBSITE_OFFSET} from '~/Global/Container'
+import {CONTENT} from '~/Global/Container'
 
 import {cn} from '@/lib/utils'
 
@@ -9,7 +9,7 @@ export default function Hero() {
   const SCREEN_HEIGHT = 'h-screen !h-svh'
 
   return (
-    <section data-section="hero-index" className={cn('flex flex-col overflow-hidden', SCREEN_HEIGHT, WEBSITE_OFFSET)}>
+    <section data-section="hero-index" className={cn('flex flex-col overflow-hidden', SCREEN_HEIGHT, CONTENT.offset)}>
       <div className={cn('flex flex-col items-center', 'gap-3.5 xl:gap-4 sm:gap-5', 'text-center')}>
         <H1 className="sm:hidden" offset={0}>
           Pu<span className="tracking-[0em]">f</span>ferz Are Flowing <br className="sm:hidden" /> Into Your Wallet
